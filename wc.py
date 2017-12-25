@@ -3,6 +3,7 @@
 
 import collections
 #  import fileinput
+from sys import argv
 
 class Wordcount(object):
     """Blueprint for the object Word_Count"""
@@ -63,4 +64,8 @@ class Wordcount(object):
 if __name__ == "__main__":
     wc = Wordcount()
     #  print(wc.count("Eins, zwei, eins und drei!"))
-    print(collections.Counter(wc.count("Eins, zwei, drei, eins, eins.")).most_common(3))
+    #  script, filename = argv
+    for filename in argv[1:]:
+        f = open(filename)
+        text = f.read()
+        print(collections.Counter(wc.count(text)).most_common(3))
