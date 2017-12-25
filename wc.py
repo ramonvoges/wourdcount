@@ -14,6 +14,7 @@ class Wordcount(object):
         :returns: dictionary with words and counts
 
         """
+        self.dictionary = {}
         #  self.text = text
         #  text = text.split(' ')
         text = text.replace('\n', ' ')

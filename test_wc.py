@@ -14,8 +14,11 @@ def test_multiple_lines():
     """Tests the processing of multiple lines."""
 
     test = "Eins zwei\ndrei eins"
+    test2 = """Eins, zwei,
+    drei, eins."""
     counter = wc.Wordcount()
     assert counter.count(test) == {"eins": 2, "zwei": 1, "drei": 1}
+    assert counter.count(test2) == {"eins": 2, "zwei": 1, "drei": 1}
 
 def test_replace_punctuation():
     """Tests the removing of punctuation."""
