@@ -3,6 +3,7 @@
 
 import collections
 #  import fileinput
+from stop_words import get_stop_words
 from sys import argv
 
 class Wordcount(object):
@@ -34,13 +35,19 @@ class Wordcount(object):
         return stripped_word
 
     def post_process_dict(self):
-        """Replaces empty records.
+        """Removes empty records and stop words.
 
         :returns: changed dictionary without empty records
 
         """
         if self.dictionary.get(''):
             del self.dictionary['']
+
+        blacklist = get_stop_words('english')
+        for word in blacklist:
+            if self.dictionary.get(word):
+                del self.dictionary[word]
+
         return self.dictionary
 
     def count(self, text):
@@ -68,4 +75,4 @@ if __name__ == "__main__":
     for filename in argv[1:]:
         f = open(filename)
         text = f.read()
-        print(collections.Counter(wc.count(text)).most_common(3))
+        print(collections.Counter(wc.count(text)).most_common(15))
