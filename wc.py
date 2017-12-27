@@ -8,13 +8,15 @@ import collections
 from sys import argv
 from stop_words import get_stop_words
 
+
 class Wordcount(object):
     """Blueprint for the object Word_Count"""
 
     def __init__(self):
         self.dictionary = {}
 
-    def pre_process_text(self, text):
+    @staticmethod
+    def pre_process_text(text):
         """Replaces line endings and splits the text into an array.
 
         :text: the given text input
@@ -25,7 +27,8 @@ class Wordcount(object):
         word_list = text.split(' ')
         return word_list
 
-    def pre_process_word(self, word):
+    @staticmethod
+    def pre_process_word(word):
         """Normalizes the given word and strips off all punctuation.
 
         :word: TODO
@@ -70,11 +73,12 @@ class Wordcount(object):
 
         return self.post_process_dict()
 
+
 if __name__ == "__main__":
-    wc = Wordcount()
+    WC = Wordcount()
     #  print(wc.count("Eins, zwei, eins und drei!"))
     #  script, filename = argv
     for filename in argv[1:]:
         f = open(filename)
-        text = f.read()
-        print(collections.Counter(wc.count(text)).most_common(15))
+        text_to_count = f.read()
+        print(collections.Counter(WC.count(text_to_count)).most_common(15))
