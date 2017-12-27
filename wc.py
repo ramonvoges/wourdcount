@@ -1,10 +1,12 @@
 #!/usr/bin/env python3.6
 # -*- coding: utf-8 -*-
 
+"""Simple word count implementation in Python."""
+
 import collections
 #  import fileinput
-from stop_words import get_stop_words
 from sys import argv
+from stop_words import get_stop_words
 
 class Wordcount(object):
     """Blueprint for the object Word_Count"""
@@ -31,7 +33,7 @@ class Wordcount(object):
 
         """
         normalized_word = word.casefold()
-        stripped_word = normalized_word.strip(',.!;?#')
+        stripped_word = normalized_word.strip('\",.!;?#')
         return stripped_word
 
     def post_process_dict(self):
