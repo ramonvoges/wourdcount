@@ -74,11 +74,17 @@ class Wordcount(object):
         return self.post_process_dict()
 
 
-if __name__ == "__main__":
-    WC = Wordcount()
-    #  print(wc.count("Eins, zwei, eins und drei!"))
-    #  script, filename = argv
+def main():
+    """Starts the program if run from the command line.
+    """
+    wc = Wordcount()
     for filename in argv[1:]:
-        f = open(filename)
-        text_to_count = f.read()
-        print(collections.Counter(WC.count(text_to_count)).most_common(15))
+        file_to_read = open(filename)
+        text_to_count = file_to_read.read()
+        print(collections.Counter(wc.count(text_to_count)).most_common(15))
+
+
+if __name__ == "__main__":
+    """If run from the command line, then accept files etc. as input.
+    """
+    main()
