@@ -4,6 +4,7 @@
 """Simple word count implementation in Python."""
 
 import collections
+import string
 #  import fileinput
 from sys import argv
 from stop_words import get_stop_words
@@ -36,7 +37,7 @@ class Wordcount(object):
 
         """
         normalized_word = word.casefold()
-        stripped_word = normalized_word.strip('\",.!;?#')
+        stripped_word = normalized_word.strip(string.punctuation)
         return stripped_word
 
     def post_process_dict(self):
